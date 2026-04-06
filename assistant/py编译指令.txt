@@ -1,0 +1,8 @@
+#把主要文件夹的内容统一收集到project_files_content.txt，这样可以直接喂给网页版的ai
+python assistant/collection.py
+
+#启动服务器
+python python/server.py
+
+#运行此文件会生成proto的py相关文件
+python python/auto_gen_proto.py

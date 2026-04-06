@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+// 定义服务（可以包含多个 RPC 方法）
+//service 是一个关键字，声明一个RPC服务
+//SearchService这个服务的自定义名称
+//rpc是关键字，声明一个可以被远程调用的方法
+//Search是RPC方法的具体名称，客服端通过这个名字调用服务器上的这个功能
+//(SearchRequest)，Search方法时遵守的格式
+//returns (SearchResponse),这个服务器执行完Search方法后向客户端返回的内容及其格式
+service SearchService {
+  rpc Search (SearchRequest) returns (SearchResponse);
+}
+
+
+// 请求消息
+//message用来定义一个消息结构
+//这是发送消息的格式
+//后面跟着的数字，称为字段编号，在Protobuf 的二进制传输格式中，不会传输字段名(query)，而是传输字段编号
+//好处是这样体积更小，传输更快
+//且字段编号确定好后不允许改变，否则会出现解析错误
+//注：数字1-15占用1个字节，16-2047占用2个字节
+message SearchRequest {
+  string query = 1;
+  int32 page_number = 2;
+  bool success = 3;
+}
+
+// 响应消息
+//这是服务器处理客户端发来的消息后返回的消息遵守的格式
+message SearchResponse {
+  string result = 1;
+}

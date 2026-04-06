@@ -1,0 +1,1 @@
+E:/software/python/python3.12/python.exe -m uvicorn api:app --reload
